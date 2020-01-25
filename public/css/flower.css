@@ -1,0 +1,22 @@
+body {
+  margin: 15px 155px 15px;
+}
+
+#heading {
+  text-align: center;
+  font-size: 15px;
+  color: rgba(255,165,2, 0.8);
+  border-bottom: 2px solid rgba(167, 156, 156, 0.8);
+  margin-bottom: 6px;
+  padding: 40px 0px  0px;
+}
+
+#container {
+  display: flex;
+}
+
+#intro {
+  margin: 200px 3px 40px;
+  height: 600;
+  width: 300;
+}
