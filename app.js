@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const STATIC_FOLDER = `${__dirname}/public`
 const { Response } = require('./lib/response');
-const { updateComments } = require('./lib/updateComment');
+const { updateComments, loadCommentFile } = require('./lib/updateComment');
 
 const CONTENT_TYPE = {
   txt: 'text/plain',
@@ -33,7 +33,9 @@ const serveStaticPage = function (request) {
 };
 
 const serveGuestPageComment = request => {
-  updateComments(request.body);
+  const currentComments = fs.readFileSync('./commentWithName.json', 'utf8')
+  const commentsAfterUpdate = updateComments(request.body, currentComments);
+  fs.writeFileSync('./commentWithName.json', commentsAfterUpdate);
   return serveGuestPage(request);
 };
 
