@@ -1,0 +1,30 @@
+body {
+   padding: 10px 200px 10px 15px;
+}
+
+#heading {
+  text-align: right;
+  font-size: 23px;
+  color: rgba(255,165,2, 0.8);
+  padding: 10px 300px 10px 15px;
+}
+
+#subHeading {
+  font-size: 28px;
+}
+
+#container {
+  padding: 0px 230px  0px;
+}
+
+#user{
+  border-bottom: 2px solid black;
+}
+
+#submit {
+   width: 60px;
+}
+
+#userName {
+  width: 150px;
+}

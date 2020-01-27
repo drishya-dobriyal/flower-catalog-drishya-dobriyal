@@ -1,43 +1,6 @@
-const fs = require('fs');
-
 const { Server } = require('net');
 const { Request } = require('./lib/request');
-const { Response } = require('./lib/response');
-
-const STATIC_FOLDER = `${__dirname}/public`
-const CONTENT_TYPE = {
-  txt: 'text/plain',
-  html: 'text/html',
-  css: 'text/css',
-  js: 'application/javascript',
-  json: 'application/json',
-  gif: 'image/gif',
-  jpg: 'image/jpeg'
-};
-
-const serveHomePage = function (request) {
-  request.url = '/index.html';
-  return serveStaticPage(request);
-};
-
-const serveStaticPage = function (request) {
-  const path = `${STATIC_FOLDER}${request.url}`;
-  const content = fs.readFileSync(path);
-  const [, extension] = path.match(/.*\.(.*)/);
-  const response = new Response();
-  response.statusCode = 200;
-  response.setHeaders('Content-Length', content.length);
-  response.setHeaders('Content-Type', CONTENT_TYPE[extension]);
-  response.body = content;
-
-  return response;
-};
-
-const findHandler = function (request) {
-  if (request.method === 'GET' && request.url === '/') return serveHomePage;
-  if (request.method === 'GET') return serveStaticPage;
-  return () => new Response();
-};
+const { processText } = require('./app');
 
 const handleConnection = function (socket) {
   const remote = `Address : ${socket.remoteAddress}, Port: ${socket.remotePort}`
@@ -49,8 +12,7 @@ const handleConnection = function (socket) {
   socket.on('end', () => console.warn(`${remote} has been ended`));
   socket.on('data', text => {
     const request = Request.parse(text);
-    const handler = findHandler(request);
-    const response = handler(request);
+    const response = processText(request);
     response.writeTo(socket);
   })
 };
