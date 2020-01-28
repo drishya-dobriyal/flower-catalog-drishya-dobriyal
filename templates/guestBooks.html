@@ -16,21 +16,21 @@
     <form action="guestBooks.html" method="POST" id='user'>
 
       <label for="userName">Name</label>
-      <input type="text" name="userName" id="userName"></input>
+      <input type="text" name="userName" id="userName" required></input>
       <br>
 
       <label for="Comment">Comment</label>
-      <textarea rows="5" cols="30" type="text" name="userComment" id="userComment"></textarea>
+      <textarea rows="5" cols="30" type="text" name="userComment" id="userComment" required></textarea>
       <br>
 
       <input type="submit" value="submit" id="submit">
     </form>
-    <table>
-      <tr>
+    <table id="table" cellspacing="10">
+      <tr cellspacing="10">
         <th>Date</th>
         <th>Time</th>
         <th>Name</th>
-        <th>Comment</th>
+        <th class="a">Comment</th>
       </tr>
       __Comments__
     </table>

@@ -28,3 +28,20 @@ body {
 #userName {
   width: 150px;
 }
+table, th, td {
+  border-collapse: collapse;
+  padding: 10px;
+} 
+
+#table {
+  text-align: left;
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+}
+.a{
+  width: 50%;
+}
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
