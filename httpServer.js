@@ -1,7 +1,12 @@
 const http = require('http');
 
-const { App } = require('./app');
-const { serveStaticPage, serveGuestPageComment, serveGuestPage, pageNotFound } = require('./lib/handlers');
+const { App } = require('./lib/app');
+const {
+  serveStaticPage,
+  serveGuestPageComment,
+  serveGuestPage,
+  pageNotFound
+} = require('./lib/handlers');
 
 const app = new App();
 
@@ -13,4 +18,5 @@ app.post('', pageNotFound);
 
 const server = new http.Server(app.serve.bind(app));
 
-server.listen(4000);
+const portNum = 4000;
+server.listen(portNum);
