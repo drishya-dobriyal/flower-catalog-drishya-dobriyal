@@ -1,7 +1,7 @@
 const http = require('http');
 
 const { App } = require('./app');
-const { serveStaticPage, serveHomePage, serveGuestPageComment, serveGuestPage, pageNotFound } = require('./lib/handlers');
+const { serveStaticPage, serveGuestPageComment, serveGuestPage, pageNotFound } = require('./lib/handlers');
 
 const app = new App();
 
