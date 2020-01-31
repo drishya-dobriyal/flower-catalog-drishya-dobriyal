@@ -52,10 +52,8 @@ describe.skip('POST /guestBooks.html', function () {
 
 describe('method not handled', function () {
   it('error for unhandled method', function (done) {
-    const data = 'userName=name&userComment=comment';
     request(app.serve.bind(app))
       .put('/index.html')
-      .send(data)
       .expect(400, done);
   });
 });
