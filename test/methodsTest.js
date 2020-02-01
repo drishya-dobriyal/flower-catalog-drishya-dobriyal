@@ -44,24 +44,22 @@ describe('POST /guestBooks.html', function () {
   after(() => {
     fs.truncateSync(DATA_STORE);
   });
-  describe('POST /guestBooks.html', function () {
-    it('should post the give userName And UserComment', function (done) {
-      const data = 'name=dd&comment=comment';
-      request(app.serve.bind(app))
-        .post('/guestBooks.html')
-        .send(data)
-        .set('Accept', '*/*')
-        .expect('Location', '/guestBooks.html')
-        .expect(303, done);
-    });
-    it('for guest page', function (done) {
-      request(app.serve.bind(app))
-        .get('/guestBooks.html')
-        .set('Accept', '*/*')
-        .expect('Content-Type', /html/)
-        .expect(/<td>dd<\/td>/)
-        .expect(200, done);
-    });
+  it('should post the give userName And UserComment', function (done) {
+    const data = 'name=dd&comment=comment';
+    request(app.serve.bind(app))
+      .post('/guestBooks.html')
+      .send(data)
+      .set('Accept', '*/*')
+      .expect('Location', '/guestBooks.html')
+      .expect(303, done);
+  });
+  it('should give guest html with data from post', function (done) {
+    request(app.serve.bind(app))
+      .get('/guestBooks.html')
+      .set('Accept', '*/*')
+      .expect('Content-Type', /html/)
+      .expect(/<td>dd<\/td>/)
+      .expect(200, done);
   });
 });
 
